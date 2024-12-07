@@ -52,6 +52,17 @@ app.post('/add-task', (req, res) => {
   }
 });
 
+app.post('/delete-task/:id', (req, res) => {
+  const taskId = req.params.id;
+  database.run("DELETE FROM tasks WHERE id = ?", [taskId], function(err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Database error');
+    }
+    res.redirect('/');
+  });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

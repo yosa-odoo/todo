@@ -32,6 +32,11 @@
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="<%= task.id %>">
               <label class="custom-control-label" for="<%= task.id %>"><%- task.task %></label>
+              <form action="/delete-task/<%= task.id %>" method="POST" style="display: inline;">
+                <button type="submit" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </form>
             </div>
           </li>
         <% }); %>
@@ -53,6 +58,11 @@
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="<%= done_task.id %>">
               <label class="custom-control-label" for="<%= done_task.id %>"><%- done_task.task %></label>
+              <form action="/delete-task/<%= done_task.id %>" method="POST" style="display: inline;">
+                <button type="submit" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </form>
             </div>
           </li>
         <% }); %>
