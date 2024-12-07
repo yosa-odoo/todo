@@ -41,7 +41,11 @@ app.post('/add-task', async (req, res, next) => {
 app.post('/delete-task/:id', async (req, res, next) => {
   try {
     const taskId = req.params.id;
-    await db.run('DELETE FROM tasks WHERE id = ?', [taskId]);
+    await db.run(`
+      UPDATE tasks
+      SET state = 'deleted'
+      WHERE id = ?
+    `, [taskId]);
     res.redirect('/');
   } catch (err) {
     next(err);

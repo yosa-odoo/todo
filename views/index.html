@@ -52,7 +52,7 @@
       <ul class="list-group list-group-flush">
         <%
           let doneTasks = _.filter(tasks, function(task) {
-            return task.state !== 'pending';
+            return task.state === 'completed';
           });
         %>
         <% _.forEach(doneTasks, function(done_task) { %>
