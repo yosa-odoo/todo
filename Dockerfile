@@ -3,8 +3,10 @@ FROM node:14
 WORKDIR /app
 
 COPY app.js .
+COPY db.js .
 COPY views ./views
 COPY package.json .
+COPY package-lock.json .
 
 RUN npm install
 
