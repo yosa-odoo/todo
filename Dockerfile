@@ -10,4 +10,6 @@ RUN npm install
 
 EXPOSE 3000
 
+VOLUME ["/app/database"]
+
 CMD ["node", "app.js"]

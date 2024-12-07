@@ -8,7 +8,7 @@ const {readFileSync} = require("fs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const sqlite3 = require('sqlite3').verbose();
-const database = new sqlite3.Database('./database.db');
+const database = new sqlite3.Database('./database/todo.db');
 
 database.run(`
   CREATE TABLE IF NOT EXISTS tasks(
