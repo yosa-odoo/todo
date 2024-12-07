@@ -22,7 +22,12 @@
 <!--    list view-->
     <div class="card">
       <ul class="list-group list-group-flush">
-        <% _.forEach(tasks, function(task) { %>
+        <%
+          let pendingTasks = _.filter(tasks, function(task) {
+            return task.state === 'pending';
+          });
+        %>
+        <% _.forEach(pendingTasks, function(task) { %>
           <li class="list-group-item">
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="<%= task.id %>">
@@ -32,10 +37,28 @@
         <% }); %>
       </ul>
     </div>
+
+
+    <h2>Done</h2>
+
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <%
+          let doneTasks = _.filter(tasks, function(task) {
+            return task.state !== 'pending';
+          });
+        %>
+        <% _.forEach(doneTasks, function(done_task) { %>
+          <li class="list-group-item">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="<%= done_task.id %>">
+              <label class="custom-control-label" for="<%= done_task.id %>"><%- done_task.task %></label>
+            </div>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
   </div>
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

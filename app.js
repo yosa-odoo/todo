@@ -28,7 +28,7 @@ function render(view, ctx = {}) {
 }
 
 app.get("/", (req, res) => {
-  database.all('SELECT * FROM tasks WHERE state = "pending"', (err, rows) => {
+  database.all('SELECT * FROM tasks', (err, rows) => {
     if (err) {
       console.error('Error fetching tasks:', err.message);
       return res.status(500).send('Error fetching tasks');
