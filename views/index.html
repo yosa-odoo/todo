@@ -60,7 +60,7 @@
             <div class="custom-control custom-checkbox">
               <form action="/update-task/<%= done_task.id %>" method="POST" style="display: inline;">
                 <input type="checkbox" class="custom-control-input" id="<%= done_task.id %>" onchange="this.form.submit()"/>
-                <label class="custom-control-label" for="<%= done_task.id %>"><%- done_task.task %></label>
+                <label class="custom-control-label" for="<%= done_task.id %>"><strike><%- done_task.task %></strike></label>
               </form>
               <form action="/delete-task/<%= done_task.id %>" method="POST" style="display: inline;">
                 <button type="submit" class="close" aria-label="Close">
