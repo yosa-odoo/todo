@@ -22,7 +22,7 @@ database.run(`
   }
 });
 
-// simple template engine
+// simple template engine; source: https://odino.org/the-simplest-template-engine-for-nodejs/
 function render(view, ctx = {}) {
   return _.template(readFileSync(`./views/${view}.html`))(ctx)
 }
