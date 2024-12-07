@@ -63,6 +63,25 @@ app.post('/delete-task/:id', (req, res) => {
   });
 });
 
+app.post('/update-task/:id', (req, res) => {
+  const taskId = req.params.id;
+  database.get("SELECT state FROM tasks WHERE id = ?", [taskId], (err, row) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Database error');
+    }
+    const newState = (row.state === 'pending') ? 'completed' : 'pending';
+    database.run("UPDATE tasks SET state = ? WHERE id = ?", [newState, taskId], function(err) {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Database error');
+      }
+      res.redirect('/');
+    });
+  });
+});
+
+// Start the server
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
