@@ -12,5 +12,5 @@ docker-compose up -d
 ## Stack
 - Backend: NodeJS + SQLite3
 - Frontend:
-  * Template engine: Hack (readFileSync + Loadash Template)
+  * Template engine: Custom template engine
   * CSS Framework: Bootstrap

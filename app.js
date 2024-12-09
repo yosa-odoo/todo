@@ -1,15 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const dbModule = require('./db');
+const { initDb, getDb } = require('./db');
+const { render } = require('./templateEngine')
 
 const app = express();
 const port = process.env.PORT || 3000;
 let db;
-
 app.use(bodyParser.urlencoded({ extended: true })); // allow retrieving data from form
-
-
 
 app.get('/', async (req, res, next) => {
   try {
@@ -68,8 +66,8 @@ app.use((err, req, res, next) => {
 
 (async () => {
   try {
-    await dbModule.initDb();
-    db = dbModule.getDb();
+    await initDb();
+    db = getDb();
     app.listen(port, () => {
       console.log(`App listening on port ${port}`);
     });
