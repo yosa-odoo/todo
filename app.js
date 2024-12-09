@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const { readFileSync } = require('fs');
+const fs = require('fs').promises;
 const _ = require('lodash');
 const dbModule = require('./db');
 
@@ -12,14 +12,15 @@ let db;
 app.use(bodyParser.urlencoded({ extended: true })); // allow retrieving data from form
 
 // Simple template engine
-function render(view, ctx = {}) {
-  return _.template(readFileSync(`./views/${view}.html`))(ctx);
+async function render(view, ctx = {}) {
+  const content = await fs.readFile(`./views/${view}.html`, 'utf-8');
+  return _.template(content)(ctx);
 }
 
 app.get('/', async (req, res, next) => {
   try {
     const tasks = await db.all('SELECT * FROM tasks');
-    res.send(render('index', { tasks }));
+    res.send(await render('index', { tasks }));
   } catch (err) {
     next(err);
   }
