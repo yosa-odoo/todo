@@ -1,8 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const fs = require('fs').promises;
-const _ = require('lodash');
 const dbModule = require('./db');
 
 const app = express();
@@ -11,11 +9,7 @@ let db;
 
 app.use(bodyParser.urlencoded({ extended: true })); // allow retrieving data from form
 
-// Simple template engine
-async function render(view, ctx = {}) {
-  const content = await fs.readFile(`./views/${view}.html`, 'utf-8');
-  return _.template(content)(ctx);
-}
+
 
 app.get('/', async (req, res, next) => {
   try {
