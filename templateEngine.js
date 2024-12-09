@@ -1,7 +1,9 @@
-/*A lightweight template engine for Node.js that supports
+/*
+A lightweight template engine for Node.js that supports
 - dynamic HTML rendering using **Lodash** templating
 - asynchronous file handling with **fs.promises**
-- support for partial templates through the `{% include %}` syntax.*/
+- support for partial templates through the `{% include %}` syntax.
+*/
 
 const fs = require('fs').promises;
 const _ = require('lodash');
