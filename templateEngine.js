@@ -1,12 +1,12 @@
 /*
 A lightweight template engine for Node.js that supports
-- dynamic HTML rendering using **Lodash** templating
+- dynamic HTML rendering using a custom **Lodash Template** build
 - asynchronous file handling with **fs.promises**
 - support for partial templates through the `{% include %}` syntax.
 */
 
 const fs = require('fs').promises;
-const _ = require('lodash');
+const _ = require('./custom_modules/lodash.custom.js');
 
 async function includePartial(baseView) {
   const reg = /{%\s+include?\s+(.*?)\s+%}/mg;

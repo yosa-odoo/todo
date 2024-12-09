@@ -11,8 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // allow retrieving data fro
 
 app.get('/', async (req, res, next) => {
   try {
-    const tasks = await db.all('SELECT * FROM tasks');
-    res.send(await render('index', { tasks }));
+    const allTasks = await db.all('SELECT * FROM tasks');
+    const pendingTasks = allTasks.filter(task => task.state === 'pending');
+    const doneTasks = allTasks.filter(task => task.state === 'completed');
+    res.send(await render('index', { pendingTasks, doneTasks }));
   } catch (err) {
     next(err);
   }

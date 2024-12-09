@@ -18,26 +18,15 @@
 <!--list view-->
     <div class="card">
       <ul class="list-group list-group-flush">
-        <%
-          let pendingTasks = _.filter(tasks, function(task) {
-            return task.state === 'pending';
-          });
-        %>
         <% _.forEach(pendingTasks, function(task) { %>
         {% include task %}
         <% }); %>
       </ul>
     </div>
 
-
     <h2>Done</h2>
     <div class="card">
-      <ul class="list-group list-group-flush">
-        <%
-          let doneTasks = _.filter(tasks, function(task) {
-            return task.state === 'completed';
-          });
-        %>
+      <ul class="list-group list-group-flush ">
         <% _.forEach(doneTasks, function(task) { %>
         {% include task %}
         <% }); %>
